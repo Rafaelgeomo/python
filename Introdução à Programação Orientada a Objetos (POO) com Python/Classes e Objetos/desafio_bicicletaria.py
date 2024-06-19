@@ -1,6 +1,6 @@
 class Bicicleta:
 
-   def __init__(self, cor, modelo, ano, valor): #metódo constructor
+   def __init__(self, cor, modelo, ano, valor): #metódo constructor/inicializador
       self.cor = cor # self é atributo do objeto
       self.modelo = modelo #atributos da classe são as caracteristicas como cor, ano, modelo
       self.ano = ano
@@ -16,8 +16,11 @@ class Bicicleta:
    def correr(self):
       print("Vrummmm...")
 
-   # def __str__(self):
+   # def __str__(self): # Método 1 para exibir a instância por completo com os valores 
    #    return f"Bicicleta: {self.cor}, {self.modelo}, {self.ano}, {self.valor}"
+   
+   def __str__(self): # Método 2 para exibir a instância por completo com os valores, diferente do método acima qualquer mudança na classe nao precisa mexer aqui.
+      return f"{self.__class__.__name__}:{', '.join([f'{chave}={valor}' for chave, valor in self.__dict__.items()])}"
 
 
 #Instância da Bicicleta
