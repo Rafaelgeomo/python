@@ -10,7 +10,7 @@ class Cliente:
    def realizar_transacao(self, conta, transacao):
       transacao.registrar(conta)
 
-   def adiocionar_conta(self, conta):
+   def adicionar_conta(self, conta):
       self.contas.append(conta)    
 
 
@@ -77,6 +77,7 @@ class Conta:
 
       else:
          print("\n### Erro no sistema, valor inválido! ###")
+         return False
 
       return True
    
@@ -121,13 +122,12 @@ class Historico:
    def transacoes(self):
       return self._transacoes
    
-   def adicionar_transacoes(self, transacao):
+   def adicionar_transacao(self, transacao):
       self._transacoes.append(
          {
             "tipo": transacao.__class__.__name__,
             "valor": transacao.valor,
-            "data": datetime.now().strftime
-            ("%d-%m-%Y %H:%M:%s"),
+            "data": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
          }
       )
 
@@ -172,13 +172,13 @@ class Deposito(Transacao):
 def menu():
    menu = """\n
    ================ MENU ================
-   [d]\tDepositar
-   [s]\tSacar
-   [e]\tExtrato
-   [nc]\tNova conta
-   [lc]\tListar contas
-   [nu]\tNovo usuário
-   [q]\tSair
+   [1]\tDepositar
+   [2]\tSacar
+   [3]\tExtrato
+   [4]\tNova conta
+   [5]\tListar contas
+   [6]\tNovo usuário
+   [0]\tSair
    => """
    return input(textwrap.dedent(menu))
 
@@ -307,26 +307,26 @@ def main():
    while True:
       opcao = menu()
 
-      if opcao == "d":
+      if opcao == "1":
          depositar(clientes)
 
-      elif opcao == "s":
+      elif opcao == "2":
          sacar(clientes)
 
-      elif opcao == "e":
+      elif opcao == "3":
          exibir_extrato(clientes)
 
-      elif opcao == "nu":
+      elif opcao == "6":
          criar_cliente(clientes)
 
-      elif opcao == "nc":
+      elif opcao == "4":
          numero_conta = len(contas) + 1
          criar_conta(numero_conta, clientes, contas)
 
-      elif opcao == "lc":
+      elif opcao == "5":
          listar_contas(contas)
 
-      elif opcao == "q":
+      elif opcao == "0":
          break
 
       else:
